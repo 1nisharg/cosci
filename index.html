@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CoSci — The Engine of Premium Revenue Acceleration</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a96e;
+    --gold-light: #e2c48a;
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #161616;
+    --card: #141414;
+    --card2: #1a1a1a;
+    --border: rgba(255,255,255,0.07);
+    --text: #f0ede8;
+    --muted: #7a7570;
+    --red: #c0392b;
+    --red-bg: rgba(192,57,43,0.15);
+    --blue: #4a7fc1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 30px; height: 30px;
+    background: var(--gold);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btn-theme {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #111;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 80px; }
+
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.1;
+  }
+
+  h1 { font-size: clamp(42px, 5vw, 64px); }
+  h2 { font-size: clamp(32px, 4vw, 52px); }
+
+  .gold { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 120px;
+    gap: 60px;
+  }
+
+  .hero-left { flex: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero-left h1 { margin-bottom: 20px; }
+
+  .hero-left p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 460px;
+    margin-bottom: 36px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.2); }
+
+  .btn-hero {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: #111;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-hero:hover { background: var(--gold-light); }
+
+  /* Pipeline visual */
+  .hero-right {
+    flex: 0 0 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pipeline-bar {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .pipeline-bar.w100 { width: 100%; }
+  .pipeline-bar.w85  { width: 85%; }
+  .pipeline-bar.w68  { width: 68%; }
+  .pipeline-bar.w50  { width: 50%; }
+  .pipeline-bar.w36  { width: 36%; }
+  .pipeline-bar.w22  { width: 22%; }
+
+  /* ── PROBLEM ── */
+  #problem { background: var(--bg); }
+
+  #problem h2 { max-width: 700px; margin-bottom: 56px; }
+
+  .cards-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+  }
+
+  .card-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .card-icon.red { background: var(--red-bg); color: var(--red); }
+  .card-icon.gold { background: rgba(201,169,110,0.12); color: var(--gold); }
+  .card-icon.blue { background: rgba(74,127,193,0.15); color: var(--blue); }
+
+  .card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── SOLUTION ── */
+  #solution { text-align: center; }
+  #solution .label { text-align: center; }
+  #solution h2 { margin-bottom: 14px; }
+  #solution > p { color: var(--muted); max-width: 540px; margin: 0 auto 56px; }
+
+  /* ── CORE FLOW ── */
+  #flow { background: var(--bg); }
+  #flow .label { text-align: center; }
+  #flow h2 { text-align: center; margin-bottom: 52px; }
+
+  .flow-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .flow-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 28px;
+  }
+
+  .flow-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .flow-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--text);
+  }
+
+  .flow-item p { font-size: 13px; color: var(--muted); }
+
+  /* ── ARCHITECTURE ── */
+  #architecture { text-align: center; }
+  #architecture .label { text-align: center; }
+  #architecture h2 { margin-bottom: 14px; }
+  #architecture > p { color: var(--muted); max-width: 480px; margin: 0 auto 56px; }
+
+  .cards-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* ── PIPELINE VELOCITY ── */
+  #velocity { background: var(--bg); }
+  #velocity .label { text-align: center; }
+  #velocity > h2 { text-align: center; margin-bottom: 64px; }
+
+  .vtl-wrap {
+    max-width: 680px;
+    margin: 0 auto 80px;
+    position: relative;
+    padding-left: 32px;
+  }
+  .vtl-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+    opacity: 0.4;
+  }
+  .vtl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 12px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .vtl-item.visible { opacity: 1; transform: translateX(0); }
+  .vtl-node {
+    position: absolute;
+    left: -44px;
+    top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .vtl-ring {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.2), 0 0 14px rgba(201,169,110,0.3);
+    transition: box-shadow 0.3s;
+  }
+  .vtl-ring-last {
+    background: var(--gold-light);
+    box-shadow: 0 0 0 4px rgba(201,169,110,0.25), 0 0 22px rgba(201,169,110,0.45);
+  }
+  .vtl-item:hover .vtl-ring {
+    box-shadow: 0 0 0 5px rgba(201,169,110,0.3), 0 0 28px rgba(201,169,110,0.5);
+  }
+  .vtl-time {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .vtl-time small {
+    display: block;
+    font-size: 8px;
+    opacity: 0.65;
+    font-weight: 400;
+  }
+  .vtl-content {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.25s;
+  }
+  .vtl-item:hover .vtl-content { border-color: rgba(201,169,110,0.2); }
+  .vtl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+  .vtl-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* AI STACK */
+  .ai-stack-title { font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 32px; }
+  .stack-label { text-align: center; }
+
+  .stack-rows {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .stack-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .stack-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 90px;
+  }
+
+  .stack-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 13px;
+    color: #ccc;
+  }
+
+  /* ── ENGAGEMENT MODELS ── */
+  #models { text-align: center; }
+  #models .label { text-align: center; }
+  #models h2 { margin-bottom: 48px; }
+
+  .model-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 980px;
+    margin: 0 auto 80px;
+    text-align: left;
+  }
+
+  .model-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 26px;
+    position: relative;
+  }
+
+  .model-card.popular { border-color: rgba(201,169,110,0.3); }
+
+  .model-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(201,169,110,0.15);
+    color: var(--gold);
+  }
+
+  .model-badge.qs { background: rgba(255,255,255,0.07); color: #aaa; }
+  .model-badge.ent { background: rgba(255,255,255,0.07); color: #aaa; }
+
+  .model-icon {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: rgba(201,169,110,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    margin-bottom: 18px;
+    color: var(--gold);
+  }
+
+  .model-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .model-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Philosophy */
+  .philosophy {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    text-align: left;
+    padding-bottom: 0;
+  }
+
+  .philosophy-left .label { text-align: left; }
+  .philosophy-left h2 { margin-bottom: 16px; }
+  .philosophy-left p { color: var(--muted); font-size: 14px; }
+
+  .philosophy-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .check-item::before {
+    content: '✓';
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.12);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  a.btn-hero, a.btn-secondary { text-decoration: none; display: inline-flex; }
+
+  /* ── GLOBAL PRESENCE ── */
+  #presence { background: var(--bg2); text-align: center; border-top: 1px solid var(--border); }
+  #presence .label { text-align: center; }
+  #presence > h2 { margin-bottom: 14px; }
+  #presence > p { color: var(--muted); max-width: 520px; margin: 0 auto 56px; font-size: 15px; }
+
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .city-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .city-card:hover {
+    border-color: rgba(201,169,110,0.25);
+    transform: translateY(-2px);
+  }
+  .city-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .city-card:hover::before { opacity: 1; }
+
+  .city-flag {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .city-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .city-region {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .city-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── ACCELERATOR ── */
+  #accelerator { background: var(--bg); }
+  #accelerator .label { text-align: center; }
+  #accelerator > h2 { text-align: center; margin-bottom: 14px; }
+  #accelerator > .accel-sub { color: var(--muted); max-width: 580px; margin: 0 auto 56px; font-size: 15px; text-align: center; }
+
+  .accel-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 1060px;
+    margin: 0 auto 60px;
+  }
+
+  .accel-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    position: relative;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .accel-card:hover {
+    border-color: rgba(201,169,110,0.25);
+    transform: translateY(-2px);
+  }
+
+  .accel-card.partner {
+    border-color: rgba(201,169,110,0.18);
+    background: linear-gradient(135deg, var(--card) 0%, rgba(201,169,110,0.04) 100%);
+  }
+
+  .partner-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,169,110,0.12);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 100px;
+    padding: 3px 8px;
+  }
+
+  .accel-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .accel-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .accel-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .accel-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,169,110,0.08);
+    border-radius: 100px;
+    padding: 3px 10px;
+  }
+
+  .accel-cta-row {
+    max-width: 1060px;
+    margin: 0 auto;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .accel-cta-row p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .accel-cta-row strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+    section { padding: 80px 28px; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    #hero { flex-direction: column; padding-top: 100px; }
+    .hero-right { flex: none; width: 100%; }
+    .cards-3, .cards-2x2, .model-cards { grid-template-columns: 1fr; }
+    .vtl-wrap { padding-left: 40px; }
+    .vtl-content { padding: 14px 16px; }
+    .cities-grid { grid-template-columns: 1fr 1fr; }
+    .accel-grid { grid-template-columns: 1fr 1fr; }
+    .accel-cta-row { flex-direction: column; align-items: flex-start; }
+    .philosophy { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-icon"></div>
+    CoSci
+  </a>
+  <ul class="nav-links">
+    <li><a href="#flow">Engine</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#models">Markets</a></li>
+    <li><a href="#models">Philosophy</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-theme">☽</button>
+    <button class="btn-primary">Get Started</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Revenue Infrastructure</div>
+    <h1>The Engine of<br><span class="gold">Premium Revenue<br>Acceleration</span></h1>
+    <p>Fusing high-scale demand with intelligent sales infrastructure to drive measurable revenue outcomes.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-hero">Build My Growth System &rarr;</a>
+      <a href="#architecture" class="btn-secondary">⊙ View Architecture</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="pipeline-bar w100">Acquisition</div>
+    <div class="pipeline-bar w85">Inbound</div>
+    <div class="pipeline-bar w68">Qualification</div>
+    <div class="pipeline-bar w50">Nurture</div>
+    <div class="pipeline-bar w36">Conversion</div>
+    <div class="pipeline-bar w22">Revenue</div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="label">The Problem</div>
+  <h2>Premium businesses don't fail on product. <span class="gold">They fail on pipeline velocity.</span></h2>
+  <div class="cards-3">
+    <div class="card">
+      <div class="card-icon red">⊗</div>
+      <h3>Fragmented Acquisition</h3>
+      <p>Channels operate in silos. No unified demand strategy means wasted spend and missed intent signals.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">△</div>
+      <h3>Poor Qualification</h3>
+      <p>Leads enter without scoring or segmentation. Sales teams waste cycles on low-intent prospects.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">◷</div>
+      <h3>Delayed Follow-ups</h3>
+      <p>The gap between interest and engagement kills conversion. Speed-to-lead is non-existent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="label">The Solution</div>
+  <h2>The CoSci <span class="gold">Revenue Engine</span></h2>
+  <p>Three integrated layers working as one system to capture, qualify, and convert high-value demand.</p>
+  <div class="cards-3">
+    <div class="card" style="text-align:left">
+      <div class="card-icon gold">⚡</div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">11Point2</div>
+      <h3>Demand Engine</h3>
+      <p>Programmatic, search, and social demand systems that capture high-intent audiences at scale.</p>
+    </div>
+    <div class="card" style="text-align:left">
+      <div class="card-icon blue">🧠</div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Intelligence Layer</div>
+      <h3>ArmourIX AI System</h3>
+      <p>AI-powered lead scoring, market intelligence, and growth automation that eliminates guesswork.</p>
+    </div>
+    <div class="card" style="text-align:left">
+      <div class="card-icon gold">👥</div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Conversion Infrastructure</div>
+      <h3>Sales Execution Layer</h3>
+      <p>Automated nurture sequences, CRM orchestration, and human handover protocols that close deals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORE FLOW -->
+<section id="flow">
+  <div class="label">Core Flow</div>
+  <h2>From first impression to final handshake — <span class="gold">fully engineered.</span></h2>
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-num">01</div>
+      <div>
+        <h4>Programmatic Awareness</h4>
+        <p>Multi-channel demand capture across programmatic, search, and social.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">02</div>
+      <div>
+        <h4>Audience Tagging</h4>
+        <p>Behavioral tagging and first-party data enrichment.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">03</div>
+      <div>
+        <h4>Meta Retargeting</h4>
+        <p>Precision retargeting to re-engage high-intent audiences.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">04</div>
+      <div>
+        <h4>AI Qualification</h4>
+        <p>Machine learning models score and segment every lead.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">05</div>
+      <div>
+        <h4>Automated Nurture</h4>
+        <p>WhatsApp + Email sequences personalized by intent signals.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">06</div>
+      <div>
+        <h4>Human Sales Handover</h4>
+        <p>Qualified opportunities routed to closers with full context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="label">System Architecture</div>
+  <h2>The <span class="gold">ArmourIX</span> System</h2>
+  <p>Four specialized engines working in concert to engineer predictable revenue.</p>
+  <div class="cards-2x2">
+    <div class="card">
+      <div class="card-icon gold">◎</div>
+      <h3>Demand Capture Engine</h3>
+      <p>Multi-channel acquisition infrastructure that identifies and captures high-intent demand before competitors.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon gold">📊</div>
+      <h3>Market Intelligence Engine</h3>
+      <p>Real-time competitive analysis, audience behavior mapping, and opportunity detection across markets.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon gold">⟳</div>
+      <h3>Growth Automation Engine</h3>
+      <p>AI-orchestrated workflows that automate nurture, scoring, and routing without human bottlenecks.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon gold">🛡</div>
+      <h3>Sales Execution Engine</h3>
+      <p>Pipeline management, conversion tracking, and revenue attribution in a single operator dashboard.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE VELOCITY -->
+<section id="velocity">
+  <div class="label">Pipeline Velocity</div>
+  <h2>Speed is the new <span class="gold">conversion advantage.</span></h2>
+
+  <div class="vtl-wrap">
+    <div class="vtl-item" data-i="0">
+      <div class="vtl-node">
+        <span class="vtl-time">T+0</span>
+        <div class="vtl-ring"></div>
+      </div>
+      <div class="vtl-content">
+        <h3 class="vtl-title">Lead Captured</h3>
+        <p class="vtl-desc">Demand signal detected and recorded</p>
+      </div>
+    </div>
+    <div class="vtl-item" data-i="1">
+      <div class="vtl-node">
+        <span class="vtl-time">T+5<small>min</small></span>
+        <div class="vtl-ring"></div>
+      </div>
+      <div class="vtl-content">
+        <h3 class="vtl-title">Instant Engagement</h3>
+        <p class="vtl-desc">Automated response triggered</p>
+      </div>
+    </div>
+    <div class="vtl-item" data-i="2">
+      <div class="vtl-node">
+        <span class="vtl-time">T+24<small>hr</small></span>
+        <div class="vtl-ring"></div>
+      </div>
+      <div class="vtl-content">
+        <h3 class="vtl-title">AI Scoring</h3>
+        <p class="vtl-desc">Intent and fit analysis complete</p>
+      </div>
+    </div>
+    <div class="vtl-item" data-i="3">
+      <div class="vtl-node">
+        <span class="vtl-time">T+48<small>hr</small></span>
+        <div class="vtl-ring"></div>
+      </div>
+      <div class="vtl-content">
+        <h3 class="vtl-title">Outreach</h3>
+        <p class="vtl-desc">Personalized sequence initiated</p>
+      </div>
+    </div>
+    <div class="vtl-item" data-i="4">
+      <div class="vtl-node">
+        <span class="vtl-time">T+72<small>hr</small></span>
+        <div class="vtl-ring vtl-ring-last"></div>
+      </div>
+      <div class="vtl-content">
+        <h3 class="vtl-title">Human Closing</h3>
+        <p class="vtl-desc">Qualified handover to sales</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="label stack-label">Technology</div>
+  <div class="ai-stack-title">The <span class="gold">AI Stack</span></div>
+  <div class="stack-rows">
+    <div class="stack-row">
+      <span class="stack-tag">Inbound</span>
+      <div class="stack-chips">
+        <span class="chip">Meta Ads</span>
+        <span class="chip">Google Ads</span>
+        <span class="chip">Programmatic</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-tag">Data Layer</span>
+      <div class="stack-chips">
+        <span class="chip">CDP</span>
+        <span class="chip">Tracking</span>
+        <span class="chip">Analytics</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-tag">AI Layer</span>
+      <div class="stack-chips">
+        <span class="chip">Lead Scoring</span>
+        <span class="chip">Personalization</span>
+        <span class="chip">Intent Detection</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-tag">Outbound</span>
+      <div class="stack-chips">
+        <span class="chip">WhatsApp</span>
+        <span class="chip">Email Automation</span>
+        <span class="chip">CRM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODELS -->
+<section id="models">
+  <div class="label">Engagement Models</div>
+  <h2>Choose your <span class="gold">growth velocity</span></h2>
+
+  <div class="model-cards">
+    <div class="model-card">
+      <span class="model-badge qs">Quick Start</span>
+      <div class="model-icon">⚡</div>
+      <h3>Growth Sprint</h3>
+      <p>90-day engagement to validate demand channels, build the funnel, and deliver first pipeline results.</p>
+    </div>
+    <div class="model-card popular">
+      <span class="model-badge">Most Popular</span>
+      <div class="model-icon">📈</div>
+      <h3>Performance Retainer</h3>
+      <p>Ongoing revenue infrastructure management with performance-linked incentives and monthly growth reviews.</p>
+    </div>
+    <div class="model-card">
+      <span class="model-badge ent">Enterprise</span>
+      <div class="model-icon">⊞</div>
+      <h3>Integrated Growth Partner</h3>
+      <p>Full-stack embedding — demand, AI, sales, and analytics — operating as your in-house growth team.</p>
+    </div>
+  </div>
+
+  <div class="philosophy">
+    <div class="philosophy-left">
+      <div class="label">Philosophy</div>
+      <h2>We own <span class="gold">outcomes</span>, not reports.</h2>
+      <p>Every system we build is measured by revenue generated — not vanity metrics, not impressions, not clicks.</p>
+    </div>
+    <div class="philosophy-checks">
+      <div class="check-item">Revenue &gt; Impressions</div>
+      <div class="check-item">Lead quality &gt; Volume</div>
+      <div class="check-item">Full-stack capability</div>
+      <div class="check-item">Proven across industries</div>
+      <div class="check-item">Operator mindset</div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL PRESENCE -->
+<section id="presence">
+  <div class="label">Global Footprint</div>
+  <h2>Built for markets that <span class="gold">move fast.</span></h2>
+  <p>We operate across six cities spanning three continents — giving our clients local execution intelligence with global infrastructure reach.</p>
+
+  <div class="cities-grid">
+    <div class="city-card">
+      <span class="city-flag">🇮🇳</span>
+      <div class="city-region">India — North</div>
+      <div class="city-name">Delhi</div>
+      <p class="city-desc">Our primary hub for enterprise and B2B client relationships across India's largest commercial corridor.</p>
+    </div>
+    <div class="city-card">
+      <span class="city-flag">🇮🇳</span>
+      <div class="city-region">India — West</div>
+      <div class="city-name">Mumbai</div>
+      <p class="city-desc">Financial capital operations — managing BFSI, ecommerce, and FMCG performance campaigns at scale.</p>
+    </div>
+    <div class="city-card">
+      <span class="city-flag">🇮🇳</span>
+      <div class="city-region">India — South</div>
+      <div class="city-name">Hyderabad</div>
+      <p class="city-desc">Tech and pharma vertical focus, powering demand generation for healthcare and IT-led growth brands.</p>
+    </div>
+    <div class="city-card">
+      <span class="city-flag">🇺🇸</span>
+      <div class="city-region">USA — South</div>
+      <div class="city-name">Austin</div>
+      <p class="city-desc">Emerging tech and growth-stage startup market — connecting US brands to performance-led acquisition systems.</p>
+    </div>
+    <div class="city-card">
+      <span class="city-flag">🇺🇸</span>
+      <div class="city-region">USA — West Coast</div>
+      <div class="city-name">San Jose</div>
+      <p class="city-desc">Silicon Valley presence for enterprise SaaS, fintech, and deep-tech clients driving global revenue pipelines.</p>
+    </div>
+    <div class="city-card">
+      <span class="city-flag">🇦🇪</span>
+      <div class="city-region">Middle East</div>
+      <div class="city-name">Dubai</div>
+      <p class="city-desc">MENA regional gateway — real estate, travel, and luxury brands targeting high-net-worth acquisition funnels.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACCELERATOR PORTFOLIO -->
+<section id="accelerator">
+  <div class="label">Accelerator Program</div>
+  <h2>Ventures we're <span class="gold">backing & building.</span></h2>
+  <p class="accel-sub">Our accelerator arm identifies and partners with high-potential startups across fintech, payments, SaaS, and growth technology — providing performance infrastructure, demand systems, and strategic GTM support.</p>
+
+  <div class="accel-grid">
+    <div class="accel-card">
+      <div class="accel-num">01</div>
+      <div class="accel-name">OpenTrust</div>
+      <p class="accel-desc">Trust infrastructure for digital transactions — building verification and compliance layers for the modern internet economy.</p>
+      <span class="accel-tag">Trust Tech</span>
+    </div>
+    <div class="accel-card partner">
+      <span class="partner-badge">Partner</span>
+      <div class="accel-num">02</div>
+      <div class="accel-name">TVB Labs</div>
+      <p class="accel-desc">Deep-tech venture lab focused on applied AI and data systems — strategic partner across product and GTM execution.</p>
+      <span class="accel-tag">Deep Tech</span>
+    </div>
+    <div class="accel-card">
+      <div class="accel-num">03</div>
+      <div class="accel-name">Nupay</div>
+      <p class="accel-desc">Next-generation payments infrastructure enabling seamless, low-friction transaction experiences for digital-first markets.</p>
+      <span class="accel-tag">Payments</span>
+    </div>
+    <div class="accel-card">
+      <div class="accel-num">04</div>
+      <div class="accel-name">iPay</div>
+      <p class="accel-desc">Embedded payments and wallet solutions designed for high-volume consumer and merchant acquisition at scale.</p>
+      <span class="accel-tag">Fintech</span>
+    </div>
+    <div class="accel-card partner">
+      <span class="partner-badge">Partner</span>
+      <div class="accel-num">05</div>
+      <div class="accel-name">Cyatech</div>
+      <p class="accel-desc">Cybersecurity and identity verification platform — strategic partner securing the data layer for portfolio companies.</p>
+      <span class="accel-tag">Cybersecurity</span>
+    </div>
+    <div class="accel-card">
+      <div class="accel-num">06</div>
+      <div class="accel-name">Incrovelsoft</div>
+      <p class="accel-desc">Enterprise software and automation solutions company driving operational efficiency for mid-market and growth brands.</p>
+      <span class="accel-tag">SaaS</span>
+    </div>
+    <div class="accel-card">
+      <div class="accel-num">07</div>
+      <div class="accel-name">11.2</div>
+      <p class="accel-desc">Performance marketing and programmatic demand engine — the acquisition infrastructure layer powering the entire portfolio.</p>
+      <span class="accel-tag">Performance</span>
+    </div>
+    <div class="accel-card partner">
+      <span class="partner-badge">Partner</span>
+      <div class="accel-num">08</div>
+      <div class="accel-name">KloudData</div>
+      <p class="accel-desc">Cloud data engineering and analytics partner — building the intelligence infrastructure that feeds AI-driven growth systems.</p>
+      <span class="accel-tag">Data & Cloud</span>
+    </div>
+  </div>
+
+  <div class="accel-cta-row">
+    <div>
+      <strong>3 Strategic Partners. 5 Portfolio Ventures. One Ecosystem.</strong>
+      <p>Our accelerator companies gain access to 11Point2's full performance infrastructure — programmatic demand, AI-led qualification, and conversion architecture — from day one.</p>
+    </div>
+    <button class="btn-primary" style="white-space:nowrap; padding: 12px 24px;">Join the Accelerator →</button>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" style="text-align:center; padding: 100px 80px; background: var(--bg2); border-top: 1px solid var(--border);">
+  <div class="label" style="text-align:center;">Ready to Scale?</div>
+  <h2 style="margin-bottom:16px;">Start building your <span class="gold">revenue engine</span></h2>
+  <p style="color:var(--muted); max-width:460px; margin: 0 auto 36px;">Let's map out a growth system built specifically for your market, your pipeline, and your revenue goals.</p>
+  <button class="btn-primary" style="padding: 14px 32px; font-size: 15px; border-radius: 10px;">Get Started →</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="text-decoration:none;color:inherit;">
+    <div class="logo-icon"></div>
+    CoSci
+  </div>
+  <div>© 2025 CoSci. All rights reserved.</div>
+</footer>
+
+<script>
+  // Staggered scroll-reveal for timeline items
+  const items = document.querySelectorAll('.vtl-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = parseInt(el.dataset.i) * 150;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
